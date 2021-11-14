@@ -3,7 +3,11 @@ const app = express();
 const expressLayouts = require("express-ejs-layouts");
 const port = 8000;
 const db = require("./config/mongoose");
+const cookieParser = require("cookie-parser");
 
+app.use(express.urlencoded());
+
+app.use(cookieParser());
 app.use(expressLayouts);
 
 //settig up static files
