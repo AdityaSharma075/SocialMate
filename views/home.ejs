@@ -15,12 +15,36 @@
 <div>
   <ul>
     <% for(post of posts){ %>
-    <p>
-      <li><%= post.content %></li>
-    </p>
-    <p>
-      <small> <%= post.user.name %> </small>
-    </p>
+    <li>
+      <p><%= post.content %></p>
+      <p>
+        <small> <%= post.user.name %> </small>
+      </p>
+      <% if(locals.user) {%>
+        <p>
+            
+            <form action="/comments/create" method="POST">
+                <textarea name="content" id="" cols="30" rows="1" placeholder="Enter comments ........."></textarea>
+                <input type="hidden" name="post" value="<%=post._id%>" >
+                <input type="submit" value="send">
+            </form>
+
+        </p>
+        <%}%>
+        <ul>
+          <% for(comment of post.comments ){ %>
+              <p>
+                  <li>   
+                      <%= comment.content %>
+                      <small>
+                          <%= comment.user.name %>
+                      </small>                     
+                  </li>
+              </p>
+              
+          <% } %>
+      </ul>
+    </li>
 
     <% } %>
   </ul>
