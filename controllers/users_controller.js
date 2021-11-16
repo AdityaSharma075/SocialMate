@@ -9,7 +9,7 @@ module.exports.profile = function (req, res) {
 
 module.exports.signUp = function (req, res) {
   if (req.isAuthenticated()) {
-    return res.redirect('/user/profile');
+    return res.redirect('/users/profile');
   }
   return res.render('user_sign_up', {
     title: 'User | SignUp',
@@ -17,7 +17,7 @@ module.exports.signUp = function (req, res) {
 };
 module.exports.signIn = function (req, res) {
   if (req.isAuthenticated()) {
-    return res.redirect('/user/profile');
+    return res.redirect('/users/profile');
   }
   return res.render('user_sign_in', {
     title: 'User | SignIn',
@@ -38,7 +38,7 @@ module.exports.create = function (req, res) {
           console.log('Eroor in Creting Data in DataBase');
         }
 
-        return res.redirect('/user/sign-in');
+        return res.redirect('/users/sign-in');
       });
     } else {
       return res.redirect('back');

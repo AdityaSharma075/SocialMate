@@ -1,1 +1,27 @@
 <h1>SocialMate homepage</h1>
+
+<% if(locals.user) {%>
+<form action="posts/create" method="POST">
+  <textarea
+    name="content"
+    cols="30"
+    rows="3"
+    placeholder="Type here..."
+  ></textarea>
+  <input type="submit" value="post" />
+</form>
+
+<%}%>
+<div>
+  <ul>
+    <% for(post of posts){ %>
+    <p>
+      <li><%= post.content %></li>
+    </p>
+    <p>
+      <small> <%= post.user.name %> </small>
+    </p>
+
+    <% } %>
+  </ul>
+</div>
