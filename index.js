@@ -6,6 +6,7 @@ const db = require('./config/mongoose');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const passport = require('passport');
+const passportJwt = require('./config/passport-jwt-strategy');
 const passportLocal = require('./config/passport-local-strategy');
 const flash = require('connect-flash');
 const customMWare = require('./config/middleware');

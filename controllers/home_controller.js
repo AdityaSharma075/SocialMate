@@ -5,8 +5,9 @@ const Comment = require('../models/comment');
 module.exports.home = async function (req, res) {
   try {
     let posts = await Post.find({})
-      .populate('user')
-      .populate({ path: 'comments', populate: { path: 'user' } });
+      .sort(' -createdAt')
+      .populate('user', 'name,email')
+      .populate({ path: 'comments', populate: ('user', 'name,email') });
 
     let users = await User.find({});
 
