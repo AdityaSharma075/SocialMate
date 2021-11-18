@@ -1,8 +1,6 @@
 const mongoose = require('mongoose');
-
-mongoose.connect(
-  'mongodb+srv://dbSocialMate:SocialMate@cluster0.cuvwg.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
-);
+const env = require('./enviornment');
+mongoose.connect(`mongodb+srv://${env.db}`);
 
 const db = mongoose.connection;
 

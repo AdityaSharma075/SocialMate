@@ -24,6 +24,15 @@ router.post(
   usersController.createSession
 );
 router.get('/sign-out', usersController.destroySession);
+router.get(
+  '/auth/google',
+  passport.authenticate('google', { scope: ['profile', 'email'] })
+);
+router.get(
+  '/auth/google/callback',
+  passport.authenticate('google', { failureRedirect: '/user/sign-in' }),
+  usersController.createSession
+);
 
 // router.get('/post/update' ,postController.update );
 // router.get('/post/delete' ,postController.delete );
