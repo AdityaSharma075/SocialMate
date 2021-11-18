@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const env = require('./config/enviornment');
 const logger = require('morgan');
+
 const expressLayouts = require('express-ejs-layouts');
 const port = 8000;
 const db = require('./config/mongoose');
@@ -14,6 +15,7 @@ const passportGoogle = require('./config/passport-google-oauth2-strategy');
 const flash = require('connect-flash');
 const customMWare = require('./config/middleware');
 const path = require('path');
+require('./config/view-helpers')(app);
 
 const MongoStore = require('connect-mongo');
 const sassMiddleware = require('node-sass-middleware');
