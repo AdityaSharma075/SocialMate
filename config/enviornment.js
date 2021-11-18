@@ -1,15 +1,15 @@
 const fs = require('fs');
-// const rfs = require('rotating-file-stream');
+const rfs = require('rotating-file-stream');
 const path = require('path');
 
-// const logDirectory = path.join(__dirname, '../production_logs');
+const logDirectory = path.join(__dirname, '../production_logs');
 
-// fs.existsSync(logDirectory) || fs.mkdirSync(logDirectory);
+fs.existsSync(logDirectory) || fs.mkdirSync(logDirectory);
 
-// const accessLogStream = rfs.createStream('access.log', {
-//   interval: '1d',
-//   path: logDirectory,
-// });
+const accessLogStream = rfs.createStream('access.log', {
+  interval: '1d',
+  path: logDirectory,
+});
 
 const development = {
   name: 'development',
@@ -22,10 +22,10 @@ const development = {
   google_call_back_url: 'http://localhost:8000/user/auth/google/callback',
   jwt_secret: 'codeial',
 
-  //   morgan: {
-  //     mode: 'dev',
-  //     option: { stream: accessLogStream },
-  //   },
+  morgan: {
+    mode: 'dev',
+    options: { stream: accessLogStream },
+  },
 };
 
 const production = {
@@ -37,6 +37,10 @@ const production = {
   google_client_secret: process.env.SOCIALMATE_GOOGLE_CLIENT_SECRET,
   google_call_back_url: process.env.SOCIALMATE_GOOGLE_CALL_BACK_URL,
   jwt_secret: process.env.SOCIALMATE_JWT_SECRET,
+  morgan: {
+    mode: 'combined',
+    options: { stream: accessLogStream },
+  },
 };
 
 module.exports =

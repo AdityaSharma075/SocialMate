@@ -1,0 +1,1 @@
+::1 - - [18/Nov/2021:05:16:47 +0000] "GET / HTTP/1.1" 304 - "http://localhost:8000/user/profile/6195c7b4baf31949f38fb50a" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36"

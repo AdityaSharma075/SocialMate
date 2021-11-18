@@ -21,9 +21,6 @@ passport.use(
           console.log('eroor in passport starategy ', err);
           return;
         }
-
-        console.log(profile);
-
         if (user) {
           return done(null, user);
         }
