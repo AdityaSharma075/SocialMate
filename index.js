@@ -49,7 +49,7 @@ app.set('view engine', 'ejs');
 app.set('views', './views');
 app.use(
   session({
-    name: 'codeial',
+    name: 'SocialMate',
     // TODO change the secret before deployment in production mode
     secret: env.session_cokkie_key,
     saveUninitialized: false,
