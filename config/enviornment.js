@@ -11,22 +11,7 @@ const accessLogStream = rfs.createStream('access.log', {
   path: logDirectory,
 });
 
-const development = {
-  name: 'development',
-  asset_path: '/assets',
-  session_cokkie_key: 'blahSomething',
-  db: 'dbSocialMate:SocialMate@cluster0.cuvwg.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
-  google_client_id:
-    '544958648420-3jda5u56f02sah5umrmul251b8g769ch.apps.googleusercontent.com',
-  google_client_secret: 'ikk8hhI8Yzu-l44EFMFXs_77',
-  google_call_back_url: 'http://localhost:8000/user/auth/google/callback',
-  jwt_secret: 'codeial',
-
-  morgan: {
-    mode: 'dev',
-    options: { stream: accessLogStream },
-  },
-};
+const development = {};
 
 const production = {
   name: 'production',
