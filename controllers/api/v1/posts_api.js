@@ -36,3 +36,20 @@ module.exports.destroy = async function (req, res) {
     });
   }
 };
+
+module.exports.create = async function (req, res) {
+  try {
+    let post = await Post.create({
+      content: req.body.content,
+      user: req.user._id,
+    });
+    return res.json(200, {
+      message: 'post created succesfully',
+    });
+  } catch (err) {
+    console.log('Eroor', err);
+    return res.json(500, {
+      message: 'Internal server error',
+    });
+  }
+};
