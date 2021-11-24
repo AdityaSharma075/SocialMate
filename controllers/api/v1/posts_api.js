@@ -10,7 +10,9 @@ module.exports.index = async function (req, res) {
       populate: { path: 'user', select: 'name , email' },
     });
   return res.json(200, {
+    success: true,
     message: 'list of posts',
+
     posts,
   });
 };
@@ -22,16 +24,19 @@ module.exports.destroy = async function (req, res) {
       post.remove();
       await Comment.deleteMany({ post: req.params.id });
       return res.json(200, {
+        success: true,
         message: 'post and associate comment deleted',
       });
     } else {
       return res.json(401, {
+        fail: true,
         message: 'You can not delete the post',
       });
     }
   } catch (err) {
     console.log('Eroor', err);
     return res.json(500, {
+      fail: true,
       message: 'Internal server error',
     });
   }
@@ -44,11 +49,13 @@ module.exports.create = async function (req, res) {
       user: req.user._id,
     });
     return res.json(200, {
+      success: true,
       message: 'post created succesfully',
     });
   } catch (err) {
     console.log('Eroor', err);
     return res.json(500, {
+      fail: true,
       message: 'Internal server error',
     });
   }

@@ -9,10 +9,12 @@ module.exports.CreateSession = async function (req, res) {
 
     if (!user || user.password != req.body.password) {
       return res.json(422, {
+        fail: true,
         message: 'Invalid Username and password',
       });
     }
     return res.json(200, {
+      success: true,
       message: 'LOGIN SUCCESSFULL HERE IS YOUR TOKEN KEEP IT SAFE!',
       data: {
         token: jwt.sign(user.toJSON(), env.jwt_secret),
@@ -34,22 +36,26 @@ module.exports.SignUp = async function (req, res) {
 
     if (user) {
       return res.json(422, {
+        fail: true,
         message: 'User Already Present',
       });
     }
     if (req.body.confirm_password != req.body.password) {
       return res.json(422, {
+        fail: true,
         message: 'password not match',
       });
     }
     user = await User.create(req.body);
     return res.json(200, {
+      success: true,
       message: 'User Created Succesfully you can login now!',
     });
   } catch (error) {
     if (error) {
       console.log('******Error ******', error);
       return res.json(500, {
+        fail: true,
         message: ' Internal Server Error',
       });
     }
