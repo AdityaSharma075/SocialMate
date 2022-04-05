@@ -61,3 +61,25 @@ module.exports.SignUp = async function (req, res) {
     }
   }
 };
+
+module.exports.getUser = async function (req, res) {
+  try {
+    let user = await User.findById(req.params.user_id);
+    console.log('ageggggggggg');
+    return res.status(200).json({
+      success: true,
+      data: {
+        user: {
+          _id: user._id,
+          name: user.name,
+          email: user.email,
+        },
+      },
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      message: 'Internal Server Error',
+    });
+  }
+};

@@ -1,15 +1,15 @@
 const Users = require('../models/user');
 const Friendships = require('../models/friendships');
 
-module.exports.addFriend = async function (request, response) {
+module.exports.addFriend = async function (req, res) {
   try {
     let existingFriendship = await Friendships.findOne({
-      from_user: request.user,
-      to_user: request.query.id,
+      from_user: req.user,
+      to_user: req.query.id,
     });
 
-    let fromUser = await Users.findById(request.user);
-    let toUser = await Users.findById(request.query.id);
+    let fromUser = await Users.findById(req.user);
+    let toUser = await Users.findById(req.query.id);
 
     let deleted = false;
 
@@ -23,8 +23,8 @@ module.exports.addFriend = async function (request, response) {
       removeFriend = true;
     } else {
       let friendship = await Friendships.create({
-        to_user: request.query.id,
-        from_user: request.user._id,
+        to_user: req.query.id,
+        from_user: req.user._id,
       });
 
       toUser.friends.push(friendship);
@@ -33,15 +33,15 @@ module.exports.addFriend = async function (request, response) {
       fromUser.save();
     }
 
-    if (request.xhr) {
-      return response.status(200).json({
+    if (req.xhr) {
+      return res.status(200).json({
         deleted: deleted,
-        message: 'Request Successful',
+        message: 'req Successful',
       });
     }
 
     //   console.log(populated_user);
-    return response.redirect('back');
+    return res.redirect('back');
   } catch (error) {
     console.log(error);
     return;

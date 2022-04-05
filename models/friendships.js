@@ -1,14 +1,14 @@
 const mongoose = require('mongoose');
-
+const Users = require('./user');
 const friendshipsSchema = new mongoose.Schema(
   {
     to_user: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Users',
+      ref: 'User',
     },
     from_user: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Users',
+      ref: 'User',
     },
   },
   {
