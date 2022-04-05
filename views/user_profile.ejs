@@ -28,4 +28,18 @@
   <input type="file" name="avatar" placeholder="upload image" />
   <input type="submit" value="Update" />
 </form>
-<% } %>
+<% }else{%> <% let isFriend = false %> <% for(let friend of
+locals.populated_user.friends){ %> <% if(friend.to_user == profile_user.id ||
+friend.from_user == profile_user.id){ %> <% isFriend = true %> <% } %> <% } %>
+
+<button class="btn">
+  <% if(isFriend){%>
+  <a href="/friends/add-friend/?id=<%= profile_user.id %>">Remove Friend</a>
+  <%} else{%>
+  <a href="/friends/add-friend/?id=<%= profile_user.id %>">Add Friend</a>
+  <%}%>
+</button>
+
+<%} %>
+
+<script src="<%= assetPath('/js/friend.js')%>"></script>

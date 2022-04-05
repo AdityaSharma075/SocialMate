@@ -3,13 +3,19 @@ const passport = require('passport');
 const fs = require('fs');
 const path = require('path');
 
-module.exports.profile = function (req, res) {
-  User.findById(req.params.id, function (err, user) {
+module.exports.profile = async function (req, res) {
+  try {
+    let user = await User.findById(req.params.id);
+    let populated_user = await User.findById(req.user).populate('friends');
     return res.render('user_profile', {
       title: 'User | Profile',
       profile_user: user,
+      populated_user,
     });
-  });
+  } catch (error) {
+    console.log('Error', error);
+    return;
+  }
 };
 module.exports.update = async function (req, res) {
   // if (req.user.id == req.params.id) {
