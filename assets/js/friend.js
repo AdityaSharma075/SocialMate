@@ -20,4 +20,4 @@ function toggleFriend(friendBtn) {
   });
 }
 
-// toggleFriend($('.btn'));
+toggleFriend($('.toggle-btn'));

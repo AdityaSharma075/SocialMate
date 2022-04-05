@@ -4,18 +4,17 @@ const path = require('path');
 
 module.exports = (app) => {
   app.locals.assetPath = function (filePath) {
-    return filePath;
-    // if (env.name == 'development') {
-    //   return filePath;
-    // }
+    if (env.name == 'development') {
+      return filePath;
+    }
 
-    // return (
-    //   '/' +
-    //   JSON.parse(
-    //     fs.readFileSync(
-    //       path.join(__dirname, '../public/assets/rev-manifest.json')
-    //     )
-    //   )[filePath]
-    // );
+    return (
+      '/' +
+      JSON.parse(
+        fs.readFileSync(
+          path.join(__dirname, '../public/assets/rev-manifest.json')
+        )
+      )[filePath]
+    );
   };
 };

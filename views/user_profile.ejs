@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="/css/userProfile.css" />
+<link rel="stylesheet" href="css/userProfile.css" />
 <h1>User | profile page</h1>
 
 <p><%= profile_user.name%></p>
@@ -34,12 +34,16 @@ friend.from_user == profile_user.id){ %> <% isFriend = true %> <% } %> <% } %>
 
 <button class="btn">
   <% if(isFriend){%>
-  <a href="/friends/add-friend/?id=<%= profile_user.id %>">Remove Friend</a>
+  <a class="toggle-btn" href="/friends/add-friend/?id=<%= profile_user.id %>"
+    >Remove Friend</a
+  >
   <%} else{%>
-  <a href="/friends/add-friend/?id=<%= profile_user.id %>">Add Friend</a>
+  <a class="toggle-btn" href="/friends/add-friend/?id=<%= profile_user.id %>"
+    >Add Friend</a
+  >
   <%}%>
 </button>
 
 <%} %>
 
-<script src="<%= assetPath('/js/friend.js')%>"></script>
+<script src="<%= assetPath('js/friend.js')%>"></script>
