@@ -48,9 +48,13 @@ module.exports.create = async function (req, res) {
       content: req.body.content,
       user: req.user._id,
     });
+    await post.populate('user', 'email , name');
     return res.json(200, {
       success: true,
       message: 'post created succesfully',
+      data: {
+        post,
+      },
     });
   } catch (err) {
     console.log('Eroor', err);
