@@ -61,11 +61,35 @@ module.exports.SignUp = async function (req, res) {
     }
   }
 };
+module.exports.editUser = async function (req, res) {
+  try {
+    // console.log('THis is req => : ', req.body);
+    let user = await User.findById(req.body._id);
+
+    user.name = req.body.name;
+    if (req.body.password == req.body.confirm_password)
+      user.password = req.password;
+
+    return res.status(200).json({
+      success: true,
+      message: 'User Updated',
+      data: {
+        token: jwt.sign(user.toJSON(), env.jwt_secret),
+        user: { name: user.name, email: user.email, id: user._id },
+      },
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      message: 'Internal Server Error',
+    });
+  }
+};
 
 module.exports.getUser = async function (req, res) {
   try {
     let user = await User.findById(req.params.user_id);
-    console.log('ageggggggggg');
+    // console.log('ageggggggggg');
     return res.status(200).json({
       success: true,
       data: {

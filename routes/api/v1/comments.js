@@ -2,20 +2,22 @@ const express = require('express');
 
 const router = express.Router();
 const passport = require('passport');
+const commentsApi = require('../../../controllers/api/v1/comments_api');
 
-const userApi = require('../../../controllers/api/v1/users_api');
-
-router.post('/create-session', userApi.CreateSession);
-router.post('/sign-up', userApi.SignUp);
 router.post(
-  '/edit',
+  '/',
   passport.authenticate('jwt', { session: false }),
-  userApi.editUser
+  commentsApi.createComment
 );
 router.get(
-  '/:user_id',
+  '/',
   passport.authenticate('jwt', { session: false }),
-  userApi.getUser
+  commentsApi.list
+);
+router.delete(
+  '/',
+  passport.authenticate('jwt', { session: false }),
+  commentsApi.destroy
 );
 
 module.exports = router;

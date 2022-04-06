@@ -15,7 +15,7 @@ module.exports.addFriend = async function (req, res) {
     // let deleted = false;
 
     if (existingFriendship) {
-      return response.json(200, {
+      return res.json(200, {
         message: `You are already Friend with${toUser.name}`,
         success: true,
       });
