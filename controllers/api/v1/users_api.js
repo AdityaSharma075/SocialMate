@@ -67,9 +67,11 @@ module.exports.editUser = async function (req, res) {
     let user = await User.findById(req.body._id);
 
     user.name = req.body.name;
-    if (req.body.password == req.body.confirm_password)
-      user.password = req.password;
-
+    if (req.body.password) {
+      if (req.body.password == req.body.confirm_password)
+        user.password = req.password;
+    }
+    user.save();
     return res.status(200).json({
       success: true,
       message: 'User Updated',
