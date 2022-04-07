@@ -18,7 +18,8 @@
     "passport-google-oauth": "^2.0.0",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
-    "rotating-file-stream": "^3.0.1"
+    "rotating-file-stream": "^3.0.1",
+    "socket.io": "^4.4.1"
   },
   "name": "socialmate",
   "description": "��#\u0000 \u0000S\u0000o\u0000c\u0000i\u0000a\u0000l\u0000M\u0000a\u0000t\u0000e\u0000\r\u0000 \u0000",

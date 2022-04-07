@@ -8,6 +8,11 @@ const port = 8000;
 const db = require('./config/mongoose');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
+
+const chatServer = require('http').createServer(app);
+const chatSockets = require('./config/chat_sockets').chatSockets(chatServer);
+chatServer.listen(5000);
+console.log('Chat server is running on :: 5000');
 const passport = require('passport');
 const passportJwt = require('./config/passport-jwt-strategy');
 const passportLocal = require('./config/passport-local-strategy');

@@ -8,6 +8,10 @@ module.exports.index = async function (req, res) {
     .populate({
       path: 'comments',
       populate: { path: 'user', select: 'name , email' },
+    })
+    .populate({
+      path: 'likes',
+      populate: { path: 'user', select: 'name , email' },
     });
   return res.json(200, {
     success: true,

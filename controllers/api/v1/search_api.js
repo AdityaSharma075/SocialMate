@@ -6,7 +6,7 @@ const Comment = require('../../../models/comment');
 module.exports.search = async function (req, res) {
   try {
     let users = await Users.find(
-      { name: { $regex: req.query.text + '.*' } },
+      { name: { $regex: req.query.text + '.*', $options: 'i' } },
       { name: 1, email: 1 }
     );
     // console.log(users);
