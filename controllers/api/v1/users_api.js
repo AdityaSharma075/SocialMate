@@ -69,7 +69,7 @@ module.exports.editUser = async function (req, res) {
     user.name = req.body.name;
     if (req.body.password) {
       if (req.body.password == req.body.confirm_password)
-        user.password = req.password;
+        user.password = req.body.password;
     }
     user.save();
     return res.status(200).json({

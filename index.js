@@ -63,8 +63,7 @@ app.use(
     //     maxAge: (1000 * 60 * 100)
     // }
     store: MongoStore.create({
-      mongoUrl:
-        'mongodb+srv://dbSocialMate:SocialMate@cluster0.cuvwg.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
+      mongoUrl: `mongodb+srv://${env.db}`,
       autoRemove: 'disabled',
     }),
   })
